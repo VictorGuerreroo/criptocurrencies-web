@@ -1,19 +1,20 @@
 <template>
-  <!-- <hello-world /> -->
-  <div>
+<!-- <hello-world /> -->
+    <div>
     {{"Index Page"}}
-  </div>
+    </div>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue'
-  import HelloWorld from '../components/HelloWorld.vue'
 
-  export default Vue.extend({
+import Vue from 'vue'
+import HelloWorld from '../components/HelloWorld.vue'
+
+export default Vue.extend({
     name: 'Home',
 
     components: {
-      HelloWorld,
-    },
-  })
+        HelloWorld,
+        },
+    })
 </script>
