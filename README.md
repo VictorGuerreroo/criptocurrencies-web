@@ -1,4 +1,4 @@
-# criptocurrencies-web
+# cryptocurrencies-web
 
 ## Project setup
 ```
