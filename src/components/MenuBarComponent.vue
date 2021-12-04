@@ -46,6 +46,6 @@ export default Vue.extend ({
 })
 </script>
 
-<style lang="">
+<style scoped lang="css">
     
 </style>

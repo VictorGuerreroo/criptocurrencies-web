@@ -14,7 +14,7 @@
                     :headers="headers"
                     :items="coins"
                     :items-per-page="15"
-                    class="elevation-1"
+                    class="elevation-1 #table > .v-data-footer .v-icon"
                     :search="search"
                     :loading= "loading"
                     loading-text="Loading... Please wait"
@@ -31,19 +31,21 @@
 
 <script lang="ts">
 
-export default {
+import Vue from "vue";
+
+export default Vue.extend({
     data () {
         return {
             coins: [] as [],
             headers: [
-                { text: 'Position', value: 'market_cap_rank', align: 'start' ,filterable: true },
-                { text: 'Coin', sortable: false, value: 'name', align: 'start' },
-                { text: 'Symbol', value: 'symbol', align: 'start' },
-                { text: 'Image', value: 'image', align: 'start' },
-                { text: 'Price', value: 'current_price', align: 'start' },
+                { text: 'Position', value: 'market_cap_rank', align: 'start' ,filterable: true, class:'black--text' },
+                { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text' },
+                { text: 'Symbol', sortable: false, value: 'symbol', align: 'start', class:'black--text' },
+                { text: 'Image', sortable: false, value: 'image', align: 'start', class:'black--text' },
+                { text: 'Price', value: 'current_price', align: 'start', class:'black--text' },
             ],
             search: '' as string,
-            loading: true as boolean
+            loading: false as boolean
         }
     },
     computed: {
@@ -53,20 +55,25 @@ export default {
     methods: {
         async getCoins() {
             let url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false`;
+            this.loading = true;
             await this.axios.get(url).then((response) => {
                 console.log('response >>>', response);
                 this.coins = response.data;
                 console.log('coins >>>', this.coins);
             })
-        },
-    },
-    created() {
-            this.loading;
-            this.getCoins();
             this.loading = false;
         },
-}
+    },
+    async created() {
+            await this.getCoins();
+        }
+});
 </script>
-<style lang="">
-    
+<style scoped lang="scss">
+    /* .myTable thead{
+        background-color:darkslategray 
+    } */
+    /*   #table > .v-data-footer .v-icon {
+    color: black!important;
+} */
 </style>
