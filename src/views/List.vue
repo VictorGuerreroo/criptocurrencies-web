@@ -22,11 +22,14 @@
                     height="800"
                     fixed-header
                 >
-                <template v-slot:item.image="{ item }">
-                    <div>
+                    <template v-slot:item.image="{ item }">
                         <v-img :src="item.image" :alt="item.name" height="30px" width="30px"></v-img>
-                    </div>
-                </template>
+                    </template>
+
+                    <template v-slot:item.current_price="{ item }">
+                        <span>{{item.current_price | dollar}}</span>
+                    </template>
+
                 </v-data-table>
         </v-card>
     </div> 
