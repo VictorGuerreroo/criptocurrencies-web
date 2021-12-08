@@ -11,13 +11,16 @@
                 ></v-text-field>
             </v-card-title>
                 <v-data-table
+                    id="table"
                     :headers="headers"
                     :items="coins"
-                    :items-per-page="15"
-                    class="elevation-1 #table > .v-data-footer .v-icon"
+                    :items-per-page="25"
+                    class="elevation-1"
                     :search="search"
                     :loading= "loading"
                     loading-text="Loading... Please wait"
+                    height="800"
+                    fixed-header
                 >
                 <template v-slot:item.image="{ item }">
                     <div>
@@ -76,4 +79,14 @@ export default Vue.extend({
     /*   #table > .v-data-footer .v-icon {
     color: black!important;
 } */
+#table .v-data-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+}
+
+#table .v-data-table__wrapper {
+    margin-bottom: 60px;
+}
 </style>
