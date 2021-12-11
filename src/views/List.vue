@@ -84,12 +84,12 @@ export default Vue.extend({
 } */
 #table .v-data-footer {
     position: fixed;
-    bottom: 0;
+    bottom: 150;
     width: 100%;
     background: white;
 }
 
-#table .v-data-table__wrapper {
+/* #table .v-data-table__wrapper {
     margin-bottom: 60px;
-}
+} */
 </style>

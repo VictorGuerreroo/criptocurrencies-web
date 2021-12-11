@@ -7,4 +7,4 @@ const dollarFilter = function(value : number) {
     return numeral(value).format('$0,0.00')
 }
 
-export { dollarFilter}
+export { dollarFilter }
