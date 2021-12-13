@@ -22,8 +22,8 @@
                     height="800"
                     fixed-header
                 >
-                    <template v-slot:item.image="{ item }">
-                        <v-img :src="item.image" :alt="item.name" height="30px" width="30px"></v-img>
+                    <template v-slot:item.name="{ item }">
+                        <div class="d-flex"><v-img :src="item.image" :alt="item.name" height="30px" width="30px"></v-img>{{item.name}}</div>
                     </template>
 
                     <template v-slot:item.current_price="{ item }">
@@ -45,10 +45,11 @@ export default Vue.extend({
             coins: [] as [],
             headers: [
                 { text: 'Position', value: 'market_cap_rank', align: 'start' ,filterable: true, class:'black--text' },
-                { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text' },
-                { text: 'Symbol', sortable: false, value: 'symbol', align: 'start', class:'black--text' },
-                { text: 'Image', sortable: false, value: 'image', align: 'start', class:'black--text' },
+                { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text text-no-wrap',cellClass:'text-no-wrap px-1' },
                 { text: 'Price', value: 'current_price', align: 'start', class:'black--text' },
+                { text: 'Symbol', sortable: false, value: 'symbol', align: 'start', class:'black--text'},
+               /*  { text: 'Image', sortable: false, value: 'image', align: 'start', class:'black--text' }, */
+                
             ],
             search: '' as string,
             loading: false as boolean

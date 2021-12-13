@@ -1,7 +1,5 @@
 <template>
-<!-- <hello-world /> -->
-    <div>
-    {{"Index Page"}}
+    <div class="backgroundImage">
     </div>
 </template>
 
@@ -18,3 +16,15 @@ export default Vue.extend({
         },
     })
 </script>
+
+<style scoped>
+    .backgroundImage{
+        display: flex;
+        background-image: url(../assets/backgroundImage.jpg);
+        height: 100%;
+        width:100%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+</style>
