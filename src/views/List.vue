@@ -23,7 +23,7 @@
                     fixed-header
                 >
                     <template v-slot:item.name="{ item }">
-                        <div class="d-flex"><v-img :src="item.image" :alt="item.name" height="30px" width="30px"></v-img>{{item.name}}</div>
+                        <div class="d-flex"><v-img class="mr-3" :src="item.image" :alt="item.name" max-height="30px" max-width="30px"></v-img><div class="mt-1">{{item.name}}</div></div>
                     </template>
 
                     <template v-slot:item.current_price="{ item }">
