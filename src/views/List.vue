@@ -29,6 +29,14 @@
                     <template v-slot:item.current_price="{ item }">
                         <span>{{item.current_price | dollar}}</span>
                     </template>
+                    
+                    <!-- <template v-slot:item.price_change_percentage_24h="{ item }">
+                        <span>{{ item.price_change_percentage_24 | dollar}}</span>
+                    </template> -->
+
+                    <template v-slot:item.market_cap="{ item }">
+                        <span>{{item.market_cap | dollar}}</span>
+                    </template>
 
                 </v-data-table>
         </v-card>
@@ -47,8 +55,10 @@ export default Vue.extend({
                 { text: 'Position', value: 'market_cap_rank', align: 'start' ,filterable: true, class:'black--text' },
                 { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text text-no-wrap',cellClass:'text-no-wrap px-1' },
                 { text: 'Price', value: 'current_price', align: 'start', class:'black--text' },
+                { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class:'black--text' },
                 { text: 'Symbol', sortable: false, value: 'symbol', align: 'start', class:'black--text'},
-               /*  { text: 'Image', sortable: false, value: 'image', align: 'start', class:'black--text' }, */
+                { text: 'Market Cap', sortable: true, value: 'market_cap', align: 'start', class:'black--text'},
+                { text: 'Circulating Supply', sortable: true, value: 'circulating_supply', align: 'start', class:'black--text'}
                 
             ],
             search: '' as string,
