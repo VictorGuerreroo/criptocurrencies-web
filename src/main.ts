@@ -7,9 +7,13 @@ import store from './store'
 import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { dollarFilter } from './filters'
+import { dollarFilter, percenterFilter, marketFilter, circulatingSupplyFilter } from './filters'
 
 Vue.filter('dollar', dollarFilter)
+Vue.filter('percent', percenterFilter)
+Vue.filter('market', marketFilter)
+Vue.filter('supply', circulatingSupplyFilter)
+
 Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false

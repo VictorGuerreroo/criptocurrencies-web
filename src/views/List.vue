@@ -23,19 +23,23 @@
                     fixed-header
                 >
                     <template v-slot:item.name="{ item }">
-                        <div class="d-flex"><v-img class="mr-3" :src="item.image" :alt="item.name" max-height="30px" max-width="30px"></v-img><div class="mt-1">{{item.name}}</div></div>
+                        <div class="d-flex"><v-img class="mr-3" :src="item.image" :alt="item.name" max-height="30px" max-width="30px"></v-img><div class="mt-1 mr-2">{{item.name}}</div><span class="grey--text mt-1">{{item.symbol.toUpperCase()}}</span></div>
                     </template>
 
                     <template v-slot:item.current_price="{ item }">
                         <span>{{item.current_price | dollar}}</span>
                     </template>
                     
-                    <!-- <template v-slot:item.price_change_percentage_24h="{ item }">
-                        <span>{{ item.price_change_percentage_24 | dollar}}</span>
-                    </template> -->
+                    <template v-slot:item.price_change_percentage_24h="{ item }">
+                        <span>{{ item.price_change_percentage_24h | percent}}</span>
+                    </template>
 
                     <template v-slot:item.market_cap="{ item }">
-                        <span>{{item.market_cap | dollar}}</span>
+                        <span>{{item.market_cap | market}}</span>
+                    </template>
+
+                    <template v-slot:item.circulating_supply="{ item }">
+                        <span>{{item.circulating_supply | supply}} {{item.symbol.toUpperCase()}}</span>
                     </template>
 
                 </v-data-table>
@@ -56,7 +60,6 @@ export default Vue.extend({
                 { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text text-no-wrap',cellClass:'text-no-wrap px-1' },
                 { text: 'Price', value: 'current_price', align: 'start', class:'black--text' },
                 { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class:'black--text' },
-                { text: 'Symbol', sortable: false, value: 'symbol', align: 'start', class:'black--text'},
                 { text: 'Market Cap', sortable: true, value: 'market_cap', align: 'start', class:'black--text'},
                 { text: 'Circulating Supply', sortable: true, value: 'circulating_supply', align: 'start', class:'black--text'}
                 
