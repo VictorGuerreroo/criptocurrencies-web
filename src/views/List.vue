@@ -31,7 +31,13 @@
                     </template>
                     
                     <template v-slot:item.price_change_percentage_24h="{ item }">
-                        <span>{{ item.price_change_percentage_24h | percent}}</span>
+                        <v-chip
+                            class="white--text"
+                            :color="getColor(item.price_change_percentage_24h)"
+                            >
+                            {{ item.price_change_percentage_24h | percent}}
+                        </v-chip>
+                        
                     </template>
 
                     <template v-slot:item.market_cap="{ item }">
@@ -59,17 +65,26 @@ export default Vue.extend({
                 { text: 'Position', value: 'market_cap_rank', align: 'start' ,filterable: true, class:'black--text' },
                 { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text text-no-wrap',cellClass:'text-no-wrap px-1' },
                 { text: 'Price', value: 'current_price', align: 'start', class:'black--text' },
-                { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class:'black--text' },
+                { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class:'white--text' },
                 { text: 'Market Cap', sortable: true, value: 'market_cap', align: 'start', class:'black--text'},
                 { text: 'Circulating Supply', sortable: true, value: 'circulating_supply', align: 'start', class:'black--text'}
                 
             ],
             search: '' as string,
-            loading: false as boolean
+            loading: false as boolean,
+            arrayAth: [] as string[],
         }
     },
     computed: {
-
+        positiveOrNegative(){
+            this.coins.forEach(element => {
+                    let { price_change_percentage_24h }:any = element
+                    this.arrayAth.push(price_change_percentage_24h)
+                    
+                });
+                window.console.log("El headers >> ", this.arrayAth)
+                return this.arrayAth;
+        },
         },
 
     methods: {
@@ -83,9 +98,18 @@ export default Vue.extend({
             })
             this.loading = false;
         },
+        
+        getColor (calories:any) {
+            /* Math.sign(calories) === -1 ?  'red' : 'green' */
+           let prueba =  Math.sign(calories) 
+           if (prueba === -1) return 'red'
+           else return 'green'
+        },
+    
     },
     async created() {
             await this.getCoins();
+            /* this.positiveOrNegative(); */
         }
 });
 </script>
