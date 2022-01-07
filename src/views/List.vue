@@ -65,10 +65,10 @@ export default Vue.extend({
                 { text: 'Position', value: 'market_cap_rank', align: 'start' ,filterable: true, class:'black--text' },
                 { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text text-no-wrap',cellClass:'text-no-wrap px-1' },
                 { text: 'Price', value: 'current_price', align: 'start', class:'black--text' },
-                { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class:'white--text' },
+                { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class:'black--text' },
                 { text: 'Market Cap', sortable: true, value: 'market_cap', align: 'start', class:'black--text'},
-                { text: 'Circulating Supply', sortable: true, value: 'circulating_supply', align: 'start', class:'black--text'}
-                
+                { text: 'Circulating Supply', sortable: true, value: 'circulating_supply', align: 'start', class:'black--text'},
+                { text: 'Details', sortable: false, value: '', align: 'start', class:'black--text'}
             ],
             search: '' as string,
             loading: false as boolean,
@@ -76,7 +76,9 @@ export default Vue.extend({
         }
     },
     computed: {
-        positiveOrNegative(){
+
+            // Example of destructuring
+        /* positiveOrNegative(){
             this.coins.forEach(element => {
                     let { price_change_percentage_24h }:any = element
                     this.arrayAth.push(price_change_percentage_24h)
@@ -84,8 +86,8 @@ export default Vue.extend({
                 });
                 window.console.log("El headers >> ", this.arrayAth)
                 return this.arrayAth;
-        },
-        },
+        }, */
+    },
 
     methods: {
         async getCoins() {
@@ -99,11 +101,10 @@ export default Vue.extend({
             this.loading = false;
         },
         
-        getColor (calories:any) {
-            /* Math.sign(calories) === -1 ?  'red' : 'green' */
-           let prueba =  Math.sign(calories) 
-           if (prueba === -1) return 'red'
-           else return 'green'
+        getColor (percentage_24h:number) {
+        let prueba =  Math.sign(percentage_24h) 
+            if (prueba === -1) return 'red'
+            return 'green'
         },
     
     },
