@@ -23,7 +23,7 @@
                     fixed-header
                 >
                     <template v-slot:item.name="{ item }">
-                        <div class="d-flex"><v-img class="mr-3" :src="item.image" :alt="item.name" max-height="30px" max-width="30px"></v-img><div class="mt-1 mr-2">{{item.name}}</div><span class="grey--text mt-1">{{item.symbol.toUpperCase()}}</span></div>
+                        <div class="d-flex"><v-img class="mr-3" :src="item.image" :alt="item.name" max-height="30px" max-width="30px"></v-img><v-btn :outlined="true" :shaped="false" :to="{ name:'coin-detail', params: { id: item.id }}" class="mt-1 mr-2">{{item.name}}</v-btn><span class="grey--text mt-1">{{item.symbol.toUpperCase()}}</span></div>
                     </template>
 
                     <template v-slot:item.current_price="{ item }">

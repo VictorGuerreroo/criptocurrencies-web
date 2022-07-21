@@ -34,6 +34,11 @@ const routes: Array<RouteConfig> = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "contact" */ '../views/Contact.vue')
   },
+  {
+    path: '/coin/:id',
+    name: 'coin-detail',
+    component: () => import(/* webpackChunkName: "coin-detail" */ '../views/coin-detail.vue')
+  },
   { 
     path: '/:pathMatch(.*)*', 
     component: () => import(/* webpackChunkName: "NoPageFound" */ '../views/NoPageFound.vue')
