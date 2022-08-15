@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+import CoinDetail from '../views/CoinDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -37,7 +38,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/coin/:id',
     name: 'coin-detail',
-    component: () => import(/* webpackChunkName: "coin-detail" */ '../views/coin-detail.vue')
+    component: CoinDetail
   },
   { 
     path: '/:pathMatch(.*)*', 

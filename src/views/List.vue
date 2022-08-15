@@ -2,55 +2,43 @@
     <div>
         <v-card>
             <v-card-title>
-                <v-text-field
-                    v-model="search"
-                    append-icon="mdi-magnify"
-                    label="Search"
-                    single-line
-                    hide-details
-                ></v-text-field>
+                <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
+                </v-text-field>
             </v-card-title>
-                <v-data-table
-                    id="table"
-                    :headers="headers"
-                    :items="coins"
-                    :items-per-page="25"
-                    class="elevation-1"
-                    :search="search"
-                    :loading= "loading"
-                    loading-text="Loading... Please wait"
-                    height="800"
-                    fixed-header
-                >
-                    <template v-slot:item.name="{ item }">
-                        <div class="d-flex"><v-img class="mr-3" :src="item.image" :alt="item.name" max-height="30px" max-width="30px"></v-img><v-btn :outlined="true" :shaped="false" :to="{ name:'coin-detail', params: { id: item.id }}" class="mt-1 mr-2">{{item.name}}</v-btn><span class="grey--text mt-1">{{item.symbol.toUpperCase()}}</span></div>
-                    </template>
+            <v-data-table id="table" :headers="headers" :items="coins" :items-per-page="25" class="elevation-1"
+                :search="search" :loading="loading" loading-text="Loading... Please wait" height="800" fixed-header>
+                <template v-slot:item.name="{ item }">
+                    <div class="d-flex">
+                        <v-img class="mr-3" :src="item.image" :alt="item.name" max-height="30px" max-width="30px">
+                        </v-img>
+                        <v-btn :outlined="true" :shaped="false" :to="{ name: 'coin-detail', params: { id: item.id } }"
+                            class="mt-1 mr-2">{{ item.name }}</v-btn><span
+                            class="grey--text mt-1">{{ item.symbol.toUpperCase() }}</span>
+                    </div>
+                </template>
 
-                    <template v-slot:item.current_price="{ item }">
-                        <span>{{item.current_price | dollar}}</span>
-                    </template>
-                    
-                    <template v-slot:item.price_change_percentage_24h="{ item }">
-                        <v-chip
-                            class="white--text"
-                            :color="getColor(item.price_change_percentage_24h)"
-                            >
-                            {{ item.price_change_percentage_24h | percent}}
-                        </v-chip>
-                        
-                    </template>
+                <template v-slot:item.current_price="{ item }">
+                    <span>{{ item.current_price | dollar }}</span>
+                </template>
 
-                    <template v-slot:item.market_cap="{ item }">
-                        <span>{{item.market_cap | market}}</span>
-                    </template>
+                <template v-slot:item.price_change_percentage_24h="{ item }">
+                    <v-chip class="white--text" :color="getColor(item.price_change_percentage_24h)">
+                        {{ item.price_change_percentage_24h | percent }}
+                    </v-chip>
 
-                    <template v-slot:item.circulating_supply="{ item }">
-                        <span>{{item.circulating_supply | supply}} {{item.symbol.toUpperCase()}}</span>
-                    </template>
+                </template>
 
-                </v-data-table>
+                <template v-slot:item.market_cap="{ item }">
+                    <span>{{ item.market_cap | market }}</span>
+                </template>
+
+                <template v-slot:item.circulating_supply="{ item }">
+                    <span>{{ item.circulating_supply | supply }} {{ item.symbol.toUpperCase() }}</span>
+                </template>
+
+            </v-data-table>
         </v-card>
-    </div> 
+    </div>
 </template>
 
 <script lang="ts">
@@ -58,17 +46,17 @@
 import Vue from "vue";
 
 export default Vue.extend({
-    data () {
+    data() {
         return {
             coins: [] as [],
             headers: [
-                { text: 'Position', value: 'market_cap_rank', align: 'start' ,filterable: true, class:'black--text' },
-                { text: 'Coin', sortable: false, value: 'name', align: 'start', class:'black--text text-no-wrap',cellClass:'text-no-wrap px-1' },
-                { text: 'Price', value: 'current_price', align: 'start', class:'black--text' },
-                { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class:'black--text' },
-                { text: 'Market Cap', sortable: true, value: 'market_cap', align: 'start', class:'black--text'},
-                { text: 'Circulating Supply', sortable: true, value: 'circulating_supply', align: 'start', class:'black--text'},
-                { text: 'Details', sortable: false, value: '', align: 'start', class:'black--text'}
+                { text: 'Position', value: 'market_cap_rank', align: 'start', filterable: true, class: 'black--text' },
+                { text: 'Coin', sortable: false, value: 'name', align: 'start', class: 'black--text text-no-wrap', cellClass: 'text-no-wrap px-1' },
+                { text: 'Price', value: 'current_price', align: 'start', class: 'black--text' },
+                { text: '24h %', sortable: true, value: 'price_change_percentage_24h', align: 'start', class: 'black--text' },
+                { text: 'Market Cap', sortable: true, value: 'market_cap', align: 'start', class: 'black--text' },
+                { text: 'Circulating Supply', sortable: true, value: 'circulating_supply', align: 'start', class: 'black--text' },
+                { text: 'Details', sortable: false, value: '', align: 'start', class: 'black--text' }
             ],
             search: '' as string,
             loading: false as boolean,
@@ -77,7 +65,7 @@ export default Vue.extend({
     },
     computed: {
 
-            // Example of destructuring
+        // Example of destructuring
         /* positiveOrNegative(){
             this.coins.forEach(element => {
                     let { price_change_percentage_24h }:any = element
@@ -100,25 +88,25 @@ export default Vue.extend({
             })
             this.loading = false;
         },
-        
-        getColor (percentage_24h:number) {
-        let prueba =  Math.sign(percentage_24h) 
+
+        getColor(percentage_24h: number) {
+            let prueba = Math.sign(percentage_24h)
             if (prueba === -1) return 'red'
             return 'green'
         },
-    
+
     },
     async created() {
-            await this.getCoins();
-            /* this.positiveOrNegative(); */
-        }
+        await this.getCoins();
+        /* this.positiveOrNegative(); */
+    }
 });
 </script>
 <style scoped lang="scss">
-    /* .myTable thead{
+/* .myTable thead{
         background-color:darkslategray 
     } */
-    /*   #table > .v-data-footer .v-icon {
+/*   #table > .v-data-footer .v-icon {
     color: black!important;
 } */
 #table .v-data-footer {
