@@ -3,7 +3,7 @@
         <v-row
             align="center"
             justify="center"
-            class="mb-3"
+            class="mb-10"
         >
             <v-col
                 class="ml-12 mr-8"
@@ -46,16 +46,25 @@
                 <br>
             </v-col>
         </v-row>
+        <v-row>
+            <v-col class="d-flex justify-center">
+                <LineChart/>
+            </v-col>
+        </v-row>
     </div>
 </template>
 <script lang="ts">
 
 import Vue from "vue";
 
+import LineChart from "@/components/LineChart.vue";
+
 export default Vue.extend({
     name: "CoinDetail",
 
-    //components: 
+    components: {
+        LineChart,
+    },
 
     data() {
         return {
@@ -87,14 +96,14 @@ export default Vue.extend({
             this.loading = true;
             await this.axios.get(`${url}/coins/${id}`)
                 .then((response) => {
-                    console.log('response >>>', response);
+                    //console.log('response >>>', response);
                     this.asset = response.data;
-                    console.log('asset >>>', this.asset);
+                    //console.log('asset >>>', this.asset);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
-            console.log(this.asset)
+            //console.log(this.asset)
         },
     },
         created(){
