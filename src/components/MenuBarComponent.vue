@@ -33,12 +33,12 @@ export default Vue.extend ({
             },
             {
                 text: 'List',
-                to: 'List',
+                to: '/List',
                 icon: 'mdi-format-list-numbered'
             },
             {
                 text: 'Contact',
-                to: 'Contact',
+                to: '/Contact',
                 icon: 'mdi-card-account-phone-outline'
             },
         ],

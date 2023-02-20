@@ -1,10 +1,39 @@
 <template>
-    <div>
+    <div >
+        <span id="element">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+        <br>
+        <span id="">{{ 'tu prima' }}</span>
+
         <v-card>
             <v-card-title>
                 <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details>
                 </v-text-field>
             </v-card-title>
+            <v-card-text id="changelog" @scroll="onScroll">
             <v-data-table id="table" :headers="headers" :items="coins" :items-per-page="25" class="elevation-1"
                 :search="search" :loading="loading" loading-text="Loading... Please wait" height="800" fixed-header>
                 <template v-slot:item.name="{ item }">
@@ -40,6 +69,25 @@
                 </template>
 
             </v-data-table>
+
+            <v-btn
+                v-show="gotoTopVisible"
+                fab
+                small
+                absolute
+                elevation="2"
+                bottom
+                right
+                color="primary"
+                class="mb-8 mr-2"
+                @click="$vuetify.goTo(0, { duration: 300, offset: 0, easing: 'easeInOutCubic', container: '#changelog' })"
+            >
+                <v-icon>mdi-chevron-up</v-icon>
+            </v-btn>
+            <button v-scroll-to="'#element'">
+                Scroll to #element
+            </button>
+        </v-card-text>
         </v-card>
     </div>
 </template>
@@ -64,6 +112,26 @@ export default Vue.extend({
             search: '' as string,
             loading: false as boolean,
             arrayAth: [] as string[],
+            gotoTopVisible: true,
+            /* options : {
+            container: '#container',
+            easing: 'ease-in',
+            lazy: false,
+            offset: -60,
+            force: true,
+            cancelable: true,
+            onStart: function(element) {
+            // scrolling started
+            },
+            onDone: function(element) {
+            // scrolling is done
+            },
+            onCancel: function() {
+            // scrolling has been interrupted
+            },
+            x: false,
+            y: true
+        } */
         }
     },
     computed: {
@@ -96,6 +164,14 @@ export default Vue.extend({
             let prueba = Math.sign(percentage_24h)
             if (prueba === -1) return 'red'
             return 'green'
+        },
+
+        onScroll(e) {
+            console.log('e >>>', e)
+            console.log('window >>>', window)
+            if (typeof window === 'undefined') return
+            const top = window.scrollY || e.target.scrollTop || 0
+            this.gotoTopVisible = top > 20
         },
 
     },
