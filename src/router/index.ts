@@ -40,6 +40,15 @@ const routes: Array<RouteConfig> = [
     name: 'coin-detail',
     component: CoinDetail
   },
+  ,
+    {
+      path: '/productos',
+      name: 'Productos',
+      // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "contact" */ '../components/Productos.vue')
+    },
   { 
     path: '/:pathMatch(.*)*', 
     component: () => import(/* webpackChunkName: "NoPageFound" */ '../views/NoPageFound.vue')

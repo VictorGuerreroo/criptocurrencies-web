@@ -14,13 +14,16 @@ import Vue from 'vue';
 
 import MenuBarComponent from './components/MenuBarComponent.vue'
 import FooterComponent from './components/Footer.vue'
+import productos from './components/Productos.vue'
+
 
 export default Vue.extend({
     name: 'App',
 
     components: {
         MenuBarComponent,
-        FooterComponent
+        FooterComponent,
+        productos
     },
 
     data: () => ({
